@@ -10,24 +10,17 @@ galleryRef.innerHTML = markup;
 function createMarkup(items) {
     return items
     .map(({preview, original, description}) => 
-    `<a class="gallery__item" href="${original}">
+    `<li><a class="gallery__item" href="${original}">
     <img class="gallery__image" 
     src="${preview}" alt="${description}" 
     />
-    </a>`)
+    </a>
+    </li>`)
     .join("");
 }
 
-galleryRef.addEventListener("click", onShowsImage);
-
-function onShowsImage(event) {
-    event.preventDefault();
-    if (event.target.nodeName !== 'IMG') {
-        return;
-    } 
-    var lightbox = new SimpleLightbox('.gallery a', { 
-        captionsData: 'alt',
-        captionPosition: 'bottom',
-        captionDelay: 250, 
-    });
-}
+const lightbox = new SimpleLightbox('.gallery a', { 
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: 250, 
+});
